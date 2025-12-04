@@ -1,0 +1,13 @@
+<svg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="600" fill="#1a1a1a"/>
+  
+  <!-- Title bars -->
+  <rect x="60" y="100" width="280" height="20" rx="4" fill="#333333"/>
+  <rect x="60" y="140" width="200" height="20" rx="4" fill="#333333"/>
+  
+  <!-- Bottom text bars -->
+  <rect x="60" y="400" width="280" height="12" rx="3" fill="#333333"/>
+  <rect x="60" y="430" width="280" height="12" rx="3" fill="#333333"/>
+  <rect x="60" y="460" width="280" height="12" rx="3" fill="#333333"/>
+  <rect x="60" y="490" width="180" height="12" rx="3" fill="#333333"/>
+</svg>

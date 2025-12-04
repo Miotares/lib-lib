@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/assets/logos/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Freie Übersetzungen libertärer Werke - lib-lib.org</title>
+  <link rel="stylesheet" href="./src/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  </script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="d4ab39ec-96fc-47ab-ad66-a207141fe854"></script>
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <div class="header-title">
+        <h1>lib-lib.org</h1>
+        <p>Freie Übersetzungen libertärer Werke</p>
+      </div>
+      <div class="header-controls">
+        <input type="text" id="search-input" placeholder="SUCHE..." aria-label="Suche nach Titel oder Autor">
+        <!-- <select id="language-filter" aria-label="Sprache filtern">
+          <option value="all">ALLE SPRACHEN</option>
+        </select> -->
+        <button id="view-toggle" class="btn-icon" aria-label="Ansicht wechseln">LISTE</button>
+      </div>
+    </header>
+
+    <main>
+      <div id="book-list" class="book-grid">
+        <!-- Books will be rendered here -->
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 lib-lib.org | <a href="impressum">Impressum</a> | <a href="https://miotares.com/spenden/"
+          target="_blank">Unterstützen</a> | <a href="https://miotares.com/" target="_blank">Mehr Projekte</a></p>
+    </footer>
+  </div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+
+</html>

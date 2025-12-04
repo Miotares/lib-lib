@@ -6,7 +6,7 @@
         "translator": "Andreas Tank",
         "translatorLink": "https://x.com/RosarotePanzer",
         "description": "Eine freiwillige, dezentrale Rechtsordnung wird skizziert, die auf Selbsteigentum, Eigentumsrechten und der Ächtung von Aggression beruht.",
-        "coverImage": "/assets/Stephan Kinsella/Die universellen Grundsätze der Freiheit/cover.jpg",
+        "coverImage": "/assets/Stephan Kinsella/Die universellen Grundsätze der Freiheit/cover.png",
         "language": "DE",
         "downloads": {
             "pdf": "/assets/Stephan Kinsella/Die universellen Grundsätze der Freiheit/book.pdf",
@@ -108,7 +108,7 @@
         "translator": "Andreas Tank",
         "translatorLink": "https://x.com/RosarotePanzer",
         "description": "Hoppe entwickelt eine umfassende, deduktive Theorie, die Sozialismus als systematische Aggression gegen Eigentumsrechte definiert, seine ökonomischen und moralischen Folgen analysiert und ihm ein streng begründetes Eigentums‐ und Vertragsverständnis des Kapitalismus entgegenstellt.",
-        "coverImage": "",
+        "coverImage": "/assets/Hans-Hermann Hoppe/Eine Theorie über Sozialismus und Kapitalismus/cover.png",
         "language": "DE",
         "downloads": {
             "pdf": "/assets/Hans-Hermann Hoppe/Eine Theorie über Sozialismus und Kapitalismus/book.pdf",
@@ -278,7 +278,7 @@
         "translator": "Andreas Tank",
         "translatorLink": "https://x.com/RosarotePanzer",
         "description": "Hoppe argumentiert, dass staatliche Monopolgewalt Sicherheit zerstört und Krieg erzeugt und zeigt, wie ein System privater Versicherungen durch wettbewerbliche Anreize gezielt Gewalt minimieren, Eigentum schützen und sogar staatliche Aggression zurückdrängen kann.",
-        "coverImage": "",
+        "coverImage": "/assets/Hans-Hermann Hoppe/Die Privatisierung der Verteidigung/cover.png",
         "language": "DE",
         "downloads": {
             "pdf": "/assets/Hans-Hermann Hoppe/Die Privatisierung der Verteidigung/book.pdf",
@@ -329,7 +329,7 @@
         "translator": "Andreas Tank",
         "translatorLink": "https://x.com/RosarotePanzer",
         "description": "Rothbard erklärt Konjunkturzyklen als Folge künstlich niedriger Zinsen durch staatlich geförderte Kreditausweitung, die Fehlinvestitionen in Kapitalgüter auslöst und nur durch eine ungehinderte Bereinigung in der Depression geheilt werden kann.",
-        "coverImage": "",
+        "coverImage": "/assets/Murray N. Rothbard/Wirtschaftliche Depressionen- Die Ursache und die Lösung/cover.png",
         "language": "DE",
         "downloads": {
             "pdf": "/assets/Murray N. Rothbard/Wirtschaftliche Depressionen- Die Ursache und die Lösung/book.pdf",
@@ -363,7 +363,7 @@
         "translator": "Andreas Tank",
         "translatorLink": "https://x.com/RosarotePanzer",
         "description": "Spooner begründet Gerechtigkeit als naturgegebenes Eigentumsrecht und verurteilt jede staatliche Gesetzgebung als usurpatorische Herrschaft, die historisch aus organisierter Plünderung entstanden ist.",
-        "coverImage": "",
+        "coverImage": "/assets/Lysander Spooner/Naturrecht, die Wissenschaft der Gerechtigkeit/cover.png",
         "language": "DE",
         "downloads": {
             "pdf": "/assets/Lysander Spooner/Naturrecht, die Wissenschaft der Gerechtigkeit/book.pdf",
@@ -400,7 +400,7 @@
         "coverImage": "",
         "language": "DE",
         "downloads": {
-            "pdf": "",
+            "pdf": "/assets/Murray N. Rothbard/Sowjetische Außenpolitik/book.pdf",
             "epub": "#",
             "mp3": "#",
             "youtube": "https://www.youtube.com/watch?v=RSg4tJlF-o4",
@@ -417,7 +417,7 @@
         "coverImage": "",
         "language": "DE",
         "downloads": {
-            "pdf": "",
+            "pdf": "/assets/Murray N. Rothbard/Über die Wichtigkeit von Revisionismus in unserer Zeit/book.pdf",
             "epub": "#",
             "mp3": "#",
             "youtube": "https://www.youtube.com/watch?v=JNzhSxIp7Vk",

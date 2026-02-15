@@ -244,20 +244,19 @@ if (searchInput) {
 } */
 
 // View Toggle Logic
-// View Toggle Logic
 const viewToggle = document.getElementById('view-toggle');
 if (viewToggle) {
-  // Default to list view on mobile
   if (window.innerWidth <= 768) {
+    // Mobile: always list view, hide toggle
     bookList.classList.add('view-list');
-    viewToggle.textContent = 'RASTER';
+    viewToggle.style.display = 'none';
+  } else {
+    viewToggle.addEventListener('click', () => {
+      bookList.classList.toggle('view-list');
+      const isList = bookList.classList.contains('view-list');
+      viewToggle.textContent = isList ? 'RASTER' : 'LISTE';
+    });
   }
-
-  viewToggle.addEventListener('click', () => {
-    bookList.classList.toggle('view-list');
-    const isList = bookList.classList.contains('view-list');
-    viewToggle.textContent = isList ? 'RASTER' : 'LISTE';
-  });
 }
 
 async function generatePdfCover(pdfUrl, imgElement, bookId) {

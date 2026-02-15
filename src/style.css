@@ -631,12 +631,17 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
+    .book-modal {
+        align-items: flex-end;
+    }
+
     .book-modal-content {
         width: 100%;
         max-width: 100%;
-        max-height: 100vh;
-        height: 100vh;
+        max-height: 95vh;
+        height: auto;
         border: none;
+        border-top: 1px solid var(--border-color);
     }
 
     .modal-layout {
@@ -646,11 +651,42 @@ footer a:hover {
     .modal-cover-col {
         border-right: none;
         border-bottom: 1px solid var(--border-color);
-        max-height: 350px;
+        max-height: 280px;
         overflow: hidden;
     }
 
+    .modal-cover-col .modal-cover {
+        object-fit: contain;
+        height: auto;
+        max-height: 280px;
+    }
+
+    .modal-info-col {
+        padding: 1.25rem;
+    }
+
     .modal-info-col h2 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+        padding-right: 2.5rem;
+    }
+
+    .modal-info-col .book-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .modal-info-col .download-options {
+        margin: 1.5rem -1.25rem -1.25rem -1.25rem;
+        flex-wrap: wrap;
+    }
+
+    .modal-info-col .download-options .btn {
+        min-width: 0;
+        padding: 0.7rem 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .book-modal-close {
+        background: rgba(10, 10, 10, 0.8);
     }
 }

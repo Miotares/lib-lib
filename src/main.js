@@ -1,6 +1,21 @@
 const bookList = document.getElementById('book-list');
 const searchInput = document.getElementById('search-input');
+const bookModal = document.getElementById('book-modal');
+const bookModalBody = bookModal.querySelector('.book-modal-body');
 let allBooks = [];
+
+function slugify(title) {
+  return title
+    .toLowerCase()
+    .replace(/ä/g, 'ae')
+    .replace(/ö/g, 'oe')
+    .replace(/ü/g, 'ue')
+    .replace(/ß/g, 'ss')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
 
 function createBookCard(book, searchTerm = '') {
   const card = document.createElement('div');
@@ -26,9 +41,9 @@ function createBookCard(book, searchTerm = '') {
       <span>${book.releaseDate}</span>
       <span>${book.language}</span>
     </div>
-    
+
     <img src="${book.coverImage}" alt="${book.title}" class="book-cover" loading="lazy">
-    
+
     <div class="book-content">
       <h2>${highlight(book.title)}</h2>
       <div class="book-credits">
@@ -45,8 +60,23 @@ function createBookCard(book, searchTerm = '') {
       ${createLink(book.downloads.mp3, 'MP3')}
       ${createLink(book.downloads.youtube, 'YouTube', 'target="_blank"')}
       ${createLink(book.downloads.link, 'Kaufen', 'target="_blank"')}
+      <button class="btn btn-share" title="Link kopieren">Link</button>
     </div>
   `;
+
+  card.querySelector('.btn-share').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const btn = e.currentTarget;
+    const slug = slugify(book.title);
+    const url = window.location.origin + window.location.pathname + '#' + slug;
+    navigator.clipboard.writeText(url).catch(() => {});
+    btn.textContent = 'Kopiert!';
+    btn.classList.add('btn-share-copied');
+    setTimeout(() => {
+      btn.textContent = 'Link';
+      btn.classList.remove('btn-share-copied');
+    }, 2000);
+  });
 
   return card;
 }
@@ -66,6 +96,91 @@ function renderBookList(booksToRender, searchTerm = '') {
   });
 }
 
+// Cache for generated covers
+const coverCache = new Map();
+
+function openBookModal(book) {
+  const createLink = (url, label, target = '') => {
+    if (!url || url === '#' || url.trim() === '') return '';
+    return `<a href="${url}" class="btn" title="Download ${label}" ${target}>${label}</a>`;
+  };
+
+  // Determine cover source — use cached PDF cover if available
+  const bookId = book.title;
+  const coverSrc = coverCache.has(bookId) ? coverCache.get(bookId) : (book.coverImage || './assets/placeholder.svg');
+
+  bookModalBody.innerHTML = `
+    <div class="modal-layout">
+      <div class="modal-cover-col">
+        <img src="${coverSrc}" alt="${book.title}" class="modal-cover">
+      </div>
+      <div class="modal-info-col">
+        <h2>${book.title}</h2>
+        <div class="book-credits">
+          <span class="book-author">${book.author}</span>
+          ${book.translator ? (book.translatorLink ? `<span class="book-translator">Übersetzung: <a href="${book.translatorLink}" target="_blank" class="translator-link">${book.translator}</a></span>` : `<span class="book-translator">Übersetzung: ${book.translator}</span>`) : ''}
+        </div>
+        <div class="modal-meta">${book.releaseDate} · ${book.language}</div>
+        <p class="book-description">${book.description}</p>
+        <div class="download-options">
+          ${createLink(book.downloads.pdf, 'PDF', 'target="_blank"')}
+          ${createLink(book.downloads.epub, 'EPUB')}
+          ${createLink(book.downloads.mp3, 'MP3')}
+          ${createLink(book.downloads.youtube, 'YouTube', 'target="_blank"')}
+          ${createLink(book.downloads.link, 'Kaufen', 'target="_blank"')}
+          <button class="btn btn-share" title="Link kopieren">Link</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  bookModalBody.querySelector('.btn-share').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const btn = e.currentTarget;
+    const slug = slugify(book.title);
+    const url = window.location.origin + window.location.pathname + '#' + slug;
+    navigator.clipboard.writeText(url).catch(() => {});
+    btn.textContent = 'Kopiert!';
+    btn.classList.add('btn-share-copied');
+    setTimeout(() => {
+      btn.textContent = 'Link';
+      btn.classList.remove('btn-share-copied');
+    }, 2000);
+  });
+
+  bookModal.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBookModal() {
+  bookModal.hidden = true;
+  document.body.style.overflow = '';
+  // Clear hash without triggering scroll
+  history.replaceState(null, '', window.location.pathname + window.location.search);
+}
+
+function openBookFromHash() {
+  const hash = window.location.hash.slice(1);
+  if (!hash || allBooks.length === 0) return;
+  const book = allBooks.find(b => slugify(b.title) === hash);
+  if (book) openBookModal(book);
+}
+
+// Modal event listeners
+bookModal.querySelector('.book-modal-backdrop').addEventListener('click', closeBookModal);
+bookModal.querySelector('.book-modal-close').addEventListener('click', closeBookModal);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !bookModal.hidden) closeBookModal();
+});
+window.addEventListener('popstate', () => {
+  if (window.location.hash) {
+    openBookFromHash();
+  } else {
+    bookModal.hidden = true;
+    document.body.style.overflow = '';
+  }
+});
+
 async function init() {
   try {
     const response = await fetch('./src/books.json');
@@ -77,6 +192,7 @@ async function init() {
 
     // renderLanguageFilter();
     renderBookList(allBooks);
+    openBookFromHash();
   } catch (error) {
     console.error('Error loading books:', error);
     if (bookList) bookList.innerHTML = '<p style="text-align:center; color: var(--primary-color);">Fehler beim Laden der Bücher.</p>';
@@ -143,9 +259,6 @@ if (viewToggle) {
     viewToggle.textContent = isList ? 'RASTER' : 'LISTE';
   });
 }
-
-// Cache for generated covers
-const coverCache = new Map();
 
 async function generatePdfCover(pdfUrl, imgElement, bookId) {
   try {

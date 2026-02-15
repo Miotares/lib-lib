@@ -1,5 +1,22 @@
 [
     {
+        "releaseDate": "1939",
+        "title": "Theorie der unausgelasteten Ressourcen",
+        "author": "W.H. Hutt",
+        "translator": "Andreas Tank",
+        "translatorLink": "https://x.com/RosarotePanzer",
+        "description": "Hutts Theorie der unausgelasteten Ressourcen, erstmals 1939 veröffentlicht, ist eine der frühesten Antworten auf Keynes' Allgemeine Theorie. Hutt greift den Kern von Keynes' Rezept zur Erholung an: ungenutzte Ressourcen – ob Geld, Kapital oder Arbeit – müssten in Bewegung gebracht werden, da alles, was nicht sofort eingesetzt wird, verschwendet sei. Hutt entgegnet ausführlich, dass an einer ungenutzten Ressource nichts Unwirtschaftliches oder zwangsläufig Ineffizientes sei. Es ist die Entscheidung des Eigentümers, sich zurückzuhalten – sei es aufgrund langfristiger Planung, einer Risikoabwägung, eines hohen Mindestlohnanspruchs oder eines Bedarfs an höherer Kassenhaltung. Dies gilt besonders für den Faktor Arbeit: In einer sich wandelnden Wirtschaft wechseln Menschen zwischen Sektoren und wählen dabei bewusst Phasen der Nichtbeschäftigung gegenüber schlecht bezahlter Arbeit. Aus diesem Grund ist es sinnlos, politische Maßnahmen zur Erreichung von Vollbeschäftigung zu entwerfen, da dies die freie Entscheidung des Einzelnen außer Kraft setzt.",
+        "coverImage": "",
+        "language": "DE",
+        "downloads": {
+            "pdf": "/assets/W.H. Hutt/book.pdf",
+            "epub": "#",
+            "mp3": "#",
+            "youtube": "",
+            "link": "https://www.lehmanns.de/shop/wirtschaft/87009163-9783384782267-theorie-der-unausgelasteten-ressourcen"
+        }
+    },
+    {
         "releaseDate": "2024",
         "title": "Die universellen Grundsätze der Freiheit",
         "author": "Stephan Kinsella",
@@ -295,7 +312,7 @@
         "translator": "Andreas Tank",
         "translatorLink": "https://x.com/RosarotePanzer",
         "description": "Der Band versammelt politische Essays und Reden, in denen Hoppe darlegt, dass der Staat unvermeidlich moralisch korrupt und ökonomisch destruktiv sei und plädiert für konsequente Privatrechtsgesellschaft und natürliche Ordnung statt staatlicher Zwangsherrschaft.",
-        "coverImage": "",
+        "coverImage": "/assets/Hans-Hermann Hoppe/Was getan werden muss/cover.jpg",
         "language": "DE",
         "downloads": {
             "pdf": "/assets/Hans-Hermann Hoppe/Was getan werden muss/book.pdf",
@@ -380,7 +397,7 @@
         "translator": "Andreas Tank",
         "translatorLink": "https://x.com/RosarotePanzer",
         "description": "Rothbard definiert den Staat als organisierte, monopolistische Form der Gewalt und der systematischen Plünderung, die sich durch Ideologie, Kontrolle und Krieg selbst erhält und ihre Ausbeutung als Schutz und Gemeinwohl tarnt.",
-        "coverImage": "",
+        "coverImage": "/assets/Murray N. Rothbard/Die Anatomie des Staates/cover.jpg",
         "language": "DE",
         "downloads": {
             "pdf": "/assets/Murray N. Rothbard/Die Anatomie des Staates/book.pdf",
@@ -397,7 +414,7 @@
         "translator": "Andreas Tank",
         "translatorLink": "https://x.com/RosarotePanzer",
         "description": "Der Artikel interpretiert die Außenpolitik der Sowjetunion als imperialistische Expansion durch staatliche Gewalt und demokratische Propaganda, und argumentiert, dass sie fundamentale Freiheit durch staatliche Kontrolle untergrub.",
-        "coverImage": "",
+        "coverImage": "/assets/Murray N. Rothbard/Sowjetische Außenpolitik/cover.jpg",
         "language": "DE",
         "downloads": {
             "pdf": "/assets/Murray N. Rothbard/Sowjetische Außenpolitik/book.pdf",
@@ -414,7 +431,7 @@
         "translator": "Andreas Tank",
         "translatorLink": "https://x.com/RosarotePanzer",
         "description": "Der Text verteidigt historisches Revisionismus als intellektuelle Pflicht, um etablierte Narrative im Licht neuer Erkenntnisse zu hinterfragen — insbesondere in politischer und wirtschaftlicher Hinsicht.",
-        "coverImage": "",
+        "coverImage": "/assets/Murray N. Rothbard/Über die Wichtigkeit von Revisionismus in unserer Zeit/cover.jpg",
         "language": "DE",
         "downloads": {
             "pdf": "/assets/Murray N. Rothbard/Über die Wichtigkeit von Revisionismus in unserer Zeit/book.pdf",

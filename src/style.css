@@ -480,3 +480,177 @@ footer a:hover {
         margin-top: 0.5rem;
     }
 }
+
+/* Share Button (inside download-options bar) */
+.btn-share {
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-share-copied {
+    background: var(--primary-color) !important;
+    color: #000 !important;
+}
+
+/* Book Modal */
+.book-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-modal[hidden] {
+    display: none;
+}
+
+.book-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.book-modal-content {
+    position: relative;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    max-width: 1100px;
+    width: 94%;
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.book-modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--bg-color);
+    border: none;
+    border-left: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 2;
+}
+
+.book-modal-close:hover {
+    background: var(--primary-color);
+    color: #000;
+}
+
+.book-modal-body {
+    padding: 0;
+}
+
+/* Two-column layout: cover left, info right */
+.modal-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+}
+
+.modal-cover-col {
+    background: #111;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    align-items: flex-start;
+}
+
+.modal-cover-col .modal-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.modal-info-col {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-info-col h2 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    padding-right: 3rem;
+}
+
+.modal-info-col .book-credits {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.modal-info-col .book-author {
+    font-family: var(--font-mono);
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.modal-info-col .book-translator {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.modal-info-col .modal-meta {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-info-col .book-description {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.modal-info-col .download-options {
+    display: flex;
+    gap: 1px;
+    background: var(--border-color);
+    border: 1px solid var(--border-color);
+    margin: 2rem -2rem -2rem -2rem;
+    border-bottom: none;
+    border-right: none;
+}
+
+@media (max-width: 768px) {
+    .book-modal-content {
+        width: 100%;
+        max-width: 100%;
+        max-height: 100vh;
+        height: 100vh;
+        border: none;
+    }
+
+    .modal-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-cover-col {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        max-height: 350px;
+        overflow: hidden;
+    }
+
+    .modal-info-col h2 {
+        font-size: 1.4rem;
+    }
+}

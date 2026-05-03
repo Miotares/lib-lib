@@ -2,7 +2,9 @@ const bookList = document.getElementById('book-list');
 const searchInput = document.getElementById('search-input');
 const bookModal = document.getElementById('book-modal');
 const bookModalBody = bookModal.querySelector('.book-modal-body');
+const resultCount = document.getElementById('result-count');
 let allBooks = [];
+let lastFocusedBeforeModal = null;
 
 function slugify(title) {
   return title
@@ -78,15 +80,35 @@ function createBookCard(book, searchTerm = '') {
     }, 2000);
   });
 
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('a, button')) return;
+    const slug = slugify(book.title);
+    history.replaceState(null, '', window.location.pathname + window.location.search + '#' + slug);
+    openBookModal(book);
+  });
+
   return card;
+}
+
+function updateResultCount(count) {
+  if (!resultCount) return;
+  const total = allBooks.length;
+  if (total === 0) {
+    resultCount.textContent = '';
+  } else if (count === total) {
+    resultCount.textContent = `${total} Werke`;
+  } else {
+    resultCount.textContent = `${count} von ${total} Werken`;
+  }
 }
 
 function renderBookList(booksToRender, searchTerm = '') {
   if (!bookList) return;
   bookList.innerHTML = '';
+  updateResultCount(booksToRender.length);
 
   if (booksToRender.length === 0) {
-    bookList.innerHTML = '<p style="grid-column: 1/-1; text-align: center; font-family: var(--font-mono); color: var(--text-secondary);">KEINE ERGEBNISSE</p>';
+    bookList.innerHTML = '<div class="empty-state"><strong>Nichts gefunden.</strong>Versuche es mit einem anderen Suchbegriff oder Filter.</div>';
     return;
   }
 
@@ -149,14 +171,41 @@ function openBookModal(book) {
   });
 
   bookModal.hidden = false;
+  bookModal.setAttribute('aria-label', book.title);
   document.body.style.overflow = 'hidden';
+
+  lastFocusedBeforeModal = document.activeElement;
+  const closeBtn = bookModal.querySelector('.book-modal-close');
+  if (closeBtn) closeBtn.focus();
 }
 
 function closeBookModal() {
   bookModal.hidden = true;
+  bookModal.removeAttribute('aria-label');
   document.body.style.overflow = '';
-  // Clear hash without triggering scroll
   history.replaceState(null, '', window.location.pathname + window.location.search);
+
+  if (lastFocusedBeforeModal && typeof lastFocusedBeforeModal.focus === 'function') {
+    lastFocusedBeforeModal.focus();
+  }
+  lastFocusedBeforeModal = null;
+}
+
+function trapModalFocus(e) {
+  if (e.key !== 'Tab' || bookModal.hidden) return;
+  const focusables = bookModal.querySelectorAll(
+    'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  if (focusables.length === 0) return;
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
 }
 
 function openBookFromHash() {
@@ -171,6 +220,7 @@ bookModal.querySelector('.book-modal-backdrop').addEventListener('click', closeB
 bookModal.querySelector('.book-modal-close').addEventListener('click', closeBookModal);
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && !bookModal.hidden) closeBookModal();
+  if (e.key === 'Tab' && !bookModal.hidden) trapModalFocus(e);
 });
 window.addEventListener('popstate', () => {
   if (window.location.hash) {
@@ -181,67 +231,120 @@ window.addEventListener('popstate', () => {
   }
 });
 
+function applyStateFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get('q') || '';
+  const author = params.get('author') || 'all';
+  const sort = params.get('sort') || 'date-desc';
+
+  if (searchInput) searchInput.value = q;
+  if (authorFilter) {
+    const exists = Array.from(authorFilter.options).some(o => o.value === author);
+    authorFilter.value = exists ? author : 'all';
+  }
+  if (sortSelect) {
+    const exists = Array.from(sortSelect.options).some(o => o.value === sort);
+    sortSelect.value = exists ? sort : 'date-desc';
+  }
+}
+
+function updateUrlState() {
+  const params = new URLSearchParams();
+  const q = searchInput ? searchInput.value.trim() : '';
+  const author = authorFilter ? authorFilter.value : 'all';
+  const sort = sortSelect ? sortSelect.value : 'date-desc';
+
+  if (q) params.set('q', q);
+  if (author && author !== 'all') params.set('author', author);
+  if (sort && sort !== 'date-desc') params.set('sort', sort);
+
+  const qs = params.toString();
+  const url = window.location.pathname + (qs ? '?' + qs : '') + (window.location.hash || '');
+  history.replaceState(null, '', url);
+}
+
 async function init() {
   try {
     const response = await fetch('./src/books.json');
     if (!response.ok) throw new Error('Failed to load books');
     allBooks = await response.json();
 
-    // Sort by releaseDate descending (newest first)
-    allBooks.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
-
-    // renderLanguageFilter();
-    renderBookList(allBooks);
+    renderAuthorFilter();
+    applyStateFromUrl();
+    filterBooks();
     openBookFromHash();
   } catch (error) {
     console.error('Error loading books:', error);
-    if (bookList) bookList.innerHTML = '<p style="text-align:center; color: var(--primary-color);">Fehler beim Laden der Bücher.</p>';
+    if (bookList) bookList.innerHTML = '<div class="empty-state"><strong>Fehler beim Laden.</strong>Bitte später erneut versuchen.</div>';
   }
 }
 
-/* const languageFilter = document.getElementById('language-filter');
+const authorFilter = document.getElementById('author-filter');
+const sortSelect = document.getElementById('sort-select');
 
-function renderLanguageFilter() {
-  if (!languageFilter) return;
+function sortBooks(books, mode) {
+  const sorted = [...books];
+  switch (mode) {
+    case 'date-asc':
+      return sorted.sort((a, b) => new Date(a.releaseDate) - new Date(b.releaseDate));
+    case 'title-asc':
+      return sorted.sort((a, b) => a.title.localeCompare(b.title, 'de'));
+    case 'date-desc':
+    default:
+      return sorted.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+  }
+}
 
-  // Get unique languages
-  const languages = [...new Set(allBooks.map(book => book.language).filter(Boolean))].sort();
+function renderAuthorFilter() {
+  if (!authorFilter) return;
 
-  // Keep "ALLE SPRACHEN" option and append others
-  languageFilter.innerHTML = '<option value="all">ALLE SPRACHEN</option>';
+  const authorCounts = allBooks.reduce((acc, book) => {
+    if (book.author) acc[book.author] = (acc[book.author] || 0) + 1;
+    return acc;
+  }, {});
 
-  languages.forEach(lang => {
+  const authors = Object.keys(authorCounts).sort((a, b) => a.localeCompare(b, 'de'));
+
+  authorFilter.innerHTML = `<option value="all">ALLE AUTOREN (${allBooks.length})</option>`;
+
+  authors.forEach(author => {
     const option = document.createElement('option');
-    option.value = lang;
-    option.textContent = lang;
-    languageFilter.appendChild(option);
+    option.value = author;
+    option.textContent = `${author} (${authorCounts[author]})`;
+    authorFilter.appendChild(option);
   });
-} */
+}
 
 function filterBooks() {
   const term = searchInput ? searchInput.value.toLowerCase() : '';
-  // const selectedLang = languageFilter ? languageFilter.value : 'all';
+  const selectedAuthor = authorFilter ? authorFilter.value : 'all';
+  const sortMode = sortSelect ? sortSelect.value : 'date-desc';
 
   const filtered = allBooks.filter(book => {
     const matchesSearch = book.title.toLowerCase().includes(term) ||
       book.author.toLowerCase().includes(term) ||
       (book.translator && book.translator.toLowerCase().includes(term));
 
-    // const matchesLang = selectedLang === 'all' || book.language === selectedLang;
+    const matchesAuthor = selectedAuthor === 'all' || book.author === selectedAuthor;
 
-    return matchesSearch; // && matchesLang;
+    return matchesSearch && matchesAuthor;
   });
 
-  renderBookList(filtered, term);
+  renderBookList(sortBooks(filtered, sortMode), term);
+  updateUrlState();
 }
 
 if (searchInput) {
   searchInput.addEventListener('input', filterBooks);
 }
 
-/* if (languageFilter) {
-  languageFilter.addEventListener('change', filterBooks);
-} */
+if (authorFilter) {
+  authorFilter.addEventListener('change', filterBooks);
+}
+
+if (sortSelect) {
+  sortSelect.addEventListener('change', filterBooks);
+}
 
 // View Toggle Logic
 const viewToggle = document.getElementById('view-toggle');
@@ -254,7 +357,7 @@ if (viewToggle) {
     viewToggle.addEventListener('click', () => {
       bookList.classList.toggle('view-list');
       const isList = bookList.classList.contains('view-list');
-      viewToggle.textContent = isList ? 'RASTER' : 'LISTE';
+      viewToggle.textContent = isList ? 'RASTERANSICHT' : 'LISTENANSICHT';
     });
   }
 }

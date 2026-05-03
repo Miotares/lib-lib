@@ -6,6 +6,21 @@
   <link rel="icon" type="image/png" href="/assets/logos/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Freie Übersetzungen libertärer Werke - lib-lib.org</title>
+  <meta name="description" content="Freie deutsche Übersetzungen libertärer Werke. Mises, Rothbard, Hoppe, Spooner und mehr — als PDF, EPUB und Hörbuch zum kostenlosen Download.">
+  <meta property="og:title" content="lib-lib.org — Freie Übersetzungen libertärer Werke">
+  <meta property="og:description" content="Freie deutsche Übersetzungen libertärer Werke. Mises, Rothbard, Hoppe, Spooner und mehr — als PDF, EPUB und Hörbuch zum kostenlosen Download.">
+  <meta property="og:image" content="https://lib-lib.org/assets/logos/logo_background.png">
+  <meta property="og:url" content="https://lib-lib.org/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="lib-lib.org">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="lib-lib.org — Freie Übersetzungen libertärer Werke">
+  <meta name="twitter:description" content="Freie deutsche Übersetzungen libertärer Werke. Mises, Rothbard, Hoppe, Spooner und mehr — kostenlos.">
+  <meta name="twitter:image" content="https://lib-lib.org/assets/logos/logo_background.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="./src/style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script>
@@ -23,20 +38,26 @@
       </div>
       <div class="header-controls">
         <input type="text" id="search-input" placeholder="SUCHE..." aria-label="Suche nach Titel oder Autor">
-        <!-- <select id="language-filter" aria-label="Sprache filtern">
-          <option value="all">ALLE SPRACHEN</option>
-        </select> -->
-        <button id="view-toggle" class="btn-icon" aria-label="Ansicht wechseln">LISTE</button>
+        <select id="author-filter" aria-label="Nach Autor filtern">
+          <option value="all">ALLE AUTOREN</option>
+        </select>
+        <select id="sort-select" aria-label="Sortieren">
+          <option value="date-desc">JAHR (NEU → ALT)</option>
+          <option value="date-asc">JAHR (ALT → NEU)</option>
+          <option value="title-asc">TITEL (A → Z)</option>
+        </select>
+        <button id="view-toggle" class="btn-icon" aria-label="Ansicht wechseln">LISTENANSICHT</button>
       </div>
     </header>
 
     <main>
+      <div id="result-count" class="result-count" aria-live="polite"></div>
       <div id="book-list" class="book-grid">
         <!-- Books will be rendered here -->
       </div>
     </main>
 
-    <div id="book-modal" class="book-modal" hidden>
+    <div id="book-modal" class="book-modal" role="dialog" aria-modal="true" hidden>
       <div class="book-modal-backdrop"></div>
       <div class="book-modal-content">
         <button class="book-modal-close" aria-label="Schließen">&times;</button>

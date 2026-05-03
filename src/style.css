@@ -308,6 +308,102 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Subpage Content */
+.subpage-main {
+    padding: 4rem 2rem;
+    max-width: 800px;
+}
+
+.subpage-main h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.subpage-main h3 {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+}
+
+.subpage-main p {
+    color: #ccc;
+    line-height: 1.7;
+}
+
+.subpage-main section {
+    margin-bottom: 2.5rem;
+}
+
+.subpage-main a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.subpage-main a:hover {
+    text-decoration: underline;
+}
+
+/* Contributor list */
+.contributor-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contributor-list li {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.contributor-name {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-color);
+    min-width: 180px;
+}
+
+.contributor-role {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    flex-grow: 1;
+}
+
+.contributor-links {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.contributor-links a {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-color) !important;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border-color);
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+}
+
+.contributor-links a:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #000 !important;
+}
+
 /* LIST VIEW STYLES */
 .view-list {
     display: flex;

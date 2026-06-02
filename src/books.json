@@ -119,6 +119,23 @@
         }
     },
     {
+        "releaseDate": "1993",
+        "title": "Die Ökonomie und Ethik des Privateigentums",
+        "author": "Hans-Hermann Hoppe",
+        "translator": "Andreas Tank",
+        "translatorLink": "https://x.com/RosarotePanzer",
+        "description": "Hoppe verbindet österreichische Kapitaltheorie mit seiner Argumentationsethik zu einer umfassenden Verteidigung des Privateigentums: Er zeigt, dass Privateigentum sowohl ökonomisch unerlässlich für rationale Ressourcenallokation als auch ethisch zwingend begründbar ist, und leitet daraus eine radikale Kritik an Steuern, Inflation und staatlichem Interventionismus ab.",
+        "coverImage": "",
+        "language": "DE",
+        "downloads": {
+            "pdf": "/assets/Hans-Hermann Hoppe/Die Ökonomie und Ethik des Privateigentums/book.pdf",
+            "epub": "/assets/Hans-Hermann Hoppe/Die Ökonomie und Ethik des Privateigentums/book.epub",
+            "mp3": "#",
+            "youtube": "",
+            "link": ""
+        }
+    },
+    {
         "releaseDate": "1989",
         "title": "Eine Theorie über Sozialismus und Kapitalismus",
         "author": "Hans-Hermann Hoppe",

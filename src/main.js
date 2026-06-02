@@ -156,6 +156,17 @@ function openBookModal(book) {
     </div>
   `;
 
+  const hasCoverImage = book.coverImage && book.coverImage.trim() !== '';
+  const hasPdf = book.downloads.pdf && book.downloads.pdf !== '#' && book.downloads.pdf.trim() !== '';
+
+  if (!hasCoverImage && hasPdf && !coverCache.has(bookId)) {
+    const modalImg = bookModalBody.querySelector('.modal-cover');
+    if (modalImg) {
+      modalImg.classList.add('loading-cover');
+      generatePdfCover(book.downloads.pdf, modalImg, bookId);
+    }
+  }
+
   bookModalBody.querySelector('.btn-share').addEventListener('click', (e) => {
     e.stopPropagation();
     const btn = e.currentTarget;

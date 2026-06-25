@@ -1,5 +1,22 @@
 [
     {
+        "releaseDate": "2020",
+        "title": "Das libertäre Streben nach einer großen historischen Erzählung",
+        "author": "Hans-Hermann Hoppe",
+        "translator": "Andreas Tank",
+        "translatorLink": "https://x.com/RosarotePanzer",
+        "description": "Hoppe argumentiert, ausgehend von Hayek, dass Libertäre eine revisionistische Großerzählung brauchen, um der herrschenden Whig-Theorie der Geschichte entgegenzuwirken – der Behauptung, dass die gegenwärtige liberaldemokratische Ordnung den Gipfel des sozialen Fortschritts darstelle. Als Maßstab sozialer Vollkommenheit setzt er ein biblisch-libertäres Ideal – Privatrechtsgesellschaft, Frieden, Eigentumsschutz – und identifiziert das europäische Mittelalter als staatenlose, dezentralisierte Ordnung, die diesem Ideal näher kam als die heutige Demokratie. Den Gegenbeweis liefert er durch eine detaillierte Kritik an Steven Pinkers The Better Angels of Our Nature: Pinkers Gewaltbegriff unterscheidet nicht zwischen aggressiver und defensiver Gewalt, blendet Eigentumsrechte vollständig aus und erklärt den Staat zum Zivilisationsmotor – was Hoppe sowohl logisch als auch anhand von Pinkers eigenen Daten als unhaltbar zurückweist.",
+        "coverImage": "",
+        "language": "DE",
+        "downloads": {
+            "pdf": "/assets/Hans-Hermann Hoppe/Das libertäre Streben nach einer großen historischen Erzählung/book.pdf",
+            "epub": "#",
+            "mp3": "#",
+            "youtube": "https://www.youtube.com/watch?v=gj2GvVdIFWY",
+            "link": ""
+        }
+    },
+    {
         "releaseDate": "1939",
         "title": "Theorie der unausgelasteten Ressourcen",
         "author": "W.H. Hutt",

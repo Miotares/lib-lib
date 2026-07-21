@@ -1,3 +1,6 @@
+// pdf.js worker — the library is loaded (deferred) in index.html; this module runs after it.
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
 const bookList = document.getElementById('book-list');
 const searchInput = document.getElementById('search-input');
 const bookModal = document.getElementById('book-modal');

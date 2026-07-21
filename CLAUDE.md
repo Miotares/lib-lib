@@ -15,6 +15,7 @@ npm run preview    # Preview a Vite build
 
 node scripts/restructure_assets.cjs   # Reorganize asset files per books.json (see below)
 node scripts/cleanup_assets.cjs       # Delete asset dirs with no matching author in books.json
+node scripts/build-catalog.cjs        # Pre-render index.html catalog + regenerate sitemap.xml + llms.txt — run after editing books.json (see "SEO pre-rendering")
 ```
 
 There is no test or lint setup.
@@ -47,7 +48,7 @@ A single JSON array is the source of truth for all catalog content. `main.js` fe
 
 A download value of `""`, `"#"`, or whitespace is treated as "not available" and its button is hidden. `link` is the "Kaufen" (buy) button.
 
-**Adding a book** = add an object to `books.json` + place files under `assets/`. No build step.
+**Adding a book** = add an object to `books.json` + place files under `assets/`, then run `node scripts/build-catalog.cjs` to refresh the pre-rendered catalog in `index.html` (see "SEO pre-rendering"). No bundler build step.
 
 ## Assets layout
 
@@ -59,12 +60,25 @@ Single module, no build-time bundling of logic. Flow: `init()` fetches `books.js
 
 Key behaviors that span the file:
 - **URL state**: search/author/sort are mirrored into query params (`?q=&author=&sort=`) via `history.replaceState`; a specific book is deep-linked via `#<slug>`.
-- **`slugify(title)`**: maps German umlauts (ä→ae, ö→oe, ü→ue, ß→ss) before stripping. **Shared book links depend on this** — changing it breaks every previously shared `#`-anchor URL.
-- **PDF cover generation**: books with empty `coverImage` but a PDF get a cover rendered from page 1 of the PDF via **pdf.js** (loaded from a CDN in `index.html`, not npm). Results are memoized in the in-memory `coverCache` Map keyed by title. This is wired in by **monkey-patching `createBookCard` at the bottom of the file** — be aware the reassigned version is what actually runs.
+- **`slugify(title)`**: maps German umlauts (ä→ae, ö→oe, ü→ue, ß→ss) before stripping. **Shared book links depend on this** — changing it breaks every previously shared `#`-anchor URL. `build-catalog.cjs` re-implements the same function for its JSON-LD/llms.txt URLs; keep them identical.
+- **PDF cover generation**: books with empty `coverImage` but a PDF get a cover rendered from page 1 of the PDF via **pdf.js** (loaded `defer` from a CDN in `index.html`, not npm; its `workerSrc` is configured at the top of `main.js`, which runs after the deferred library). Results are memoized in the in-memory `coverCache` Map keyed by title. This is wired in by **monkey-patching `createBookCard` at the bottom of the file** — be aware the reassigned version is what actually runs.
 - **Modal**: per-book detail dialog with focus trap, ESC/backdrop close, and `popstate` handling.
 - **View toggle**: grid ⇄ list; forced to list (toggle hidden) on viewports ≤768px.
 
 Book fields are interpolated into `innerHTML` without escaping — `books.json` is trusted, hand-maintained content. Keep it that way (don't treat it as user input), or add escaping if that assumption changes.
+
+## SEO pre-rendering — `scripts/build-catalog.cjs`
+
+The runtime catalog is client-rendered from `books.json`, so the raw HTML would otherwise be empty — invisible to non-JS crawlers and AI answer engines (GPTBot, ClaudeBot, PerplexityBot, …). `build-catalog.cjs` fixes this at author-time (committed output, not a bundler step). It re-implements `slugify()` — **keep it in sync with `main.js`'s `slugify()`**. Idempotent; re-run after editing `books.json`: `node scripts/build-catalog.cjs` (or `npm run build:catalog`).
+
+It generates, all from `books.json`:
+
+1. **`index.html` catalog** — two regions between HTML marker comments (**do not hand-edit inside the markers, they get overwritten**): `<!-- catalog-jsonld:start/end -->` in `<head>` (`ItemList` of `Book` JSON-LD, each book's `url` a `#<slug>` deep-link) and `<!-- catalog-list:start/end -->` inside `#book-list` (static `.book-card` markup). At runtime `main.js` clears `#book-list` and re-renders, so the static list is a progressive-enhancement fallback: invisible to JS users, readable by crawlers.
+2. **`sitemap.xml`** (the four real pages) and **`llms.txt`** (site summary + every work, linked via `#<slug>`) — fully regenerated. Don't hand-edit; change the generator instead.
+
+Also at the root: `robots.txt` (allows all crawlers incl. AI bots, references the sitemap). All catalog/legal pages carry self-referencing `<link rel="canonical">`; `index.html` also has `Organization` + `WebSite` JSON-LD (hand-maintained in `<head>`, outside the markers).
+
+> Per-work `/werke/<slug>/` reading pages (full text via Markdown + footnotes) were prototyped and intentionally removed for now — to be revisited later.
 
 ## Other pages
 

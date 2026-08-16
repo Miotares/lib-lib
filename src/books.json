@@ -26,8 +26,8 @@
         "coverImage": "",
         "language": "DE",
         "downloads": {
-            "pdf": "/assets/W.H. Hutt/book.pdf",
-            "epub": "/assets/W.H. Hutt/book.epub",
+            "pdf": "/assets/W.H. Hutt/Theorie der unausgelasteten Ressourcen/book.pdf",
+            "epub": "/assets/W.H. Hutt/Theorie der unausgelasteten Ressourcen/book.epub",
             "mp3": "#",
             "youtube": "",
             "link": "https://www.lehmanns.de/shop/wirtschaft/87009163-9783384782267-theorie-der-unausgelasteten-ressourcen"
@@ -148,7 +148,7 @@
             "pdf": "/assets/Hans-Hermann Hoppe/Die Ökonomie und Ethik des Privateigentums/book.pdf",
             "epub": "/assets/Hans-Hermann Hoppe/Die Ökonomie und Ethik des Privateigentums/book.epub",
             "mp3": "#",
-            "youtube": "",
+            "youtube": "https://www.youtube.com/watch?v=Nl1K5sVyvDQ",
             "link": "https://shop.tredition.com/booktitle/Die_%3Fkonomie_und_Ethik_des_Privateigentums/W-698-789-797"
         }
     },
@@ -472,6 +472,40 @@
             "epub": "#",
             "mp3": "#",
             "youtube": "https://www.youtube.com/watch?v=JNzhSxIp7Vk",
+            "link": ""
+        }
+    },
+    {
+        "releaseDate": "2025",
+        "title": "Wenn Bewegungen zu Betrugsmaschen und anderem Schwindel werden",
+        "author": "Douglas E. French",
+        "translator": "Andreas Tank",
+        "translatorLink": "https://x.com/RosarotePanzer",
+        "description": "French zeigt an Fallbeispielen – von gemeinnützigen Bewegungen über Finanz-Newsletter bis zur Lehre vom Unternehmertum –, wie aus idealistischen Anliegen systematisch Betrugsmaschen werden. Sein Kernargument: Wo Spender, Konsumenten und Produzenten getrennte Interessen verfolgen, fehlt der direkte Marktaustausch, der Betrug im gewinnorientierten Sektor eindämmt, wodurch ein struktureller Nährboden für Täuschung entsteht. Mit einem Vorwort von Jeffrey A. Tucker und in Bearbeitung von Stephan Kinsella bildet der Band den Abschluss der PFS-Trilogie.",
+        "coverImage": "/assets/Douglas E. French/Wenn Bewegungen zu Betrugsmaschen und anderem Schwindel werden/cover.jpg",
+        "language": "DE",
+        "downloads": {
+            "pdf": "/assets/Douglas E. French/Wenn Bewegungen zu Betrugsmaschen und anderem Schwindel werden/book.pdf",
+            "epub": "#",
+            "mp3": "#",
+            "youtube": "",
+            "link": ""
+        }
+    },
+    {
+        "releaseDate": "2004",
+        "title": "Der Kampf um die Freiheit",
+        "author": "Ralph Raico",
+        "translator": "Andreas Tank",
+        "translatorLink": "https://x.com/RosarotePanzer",
+        "description": "Raico zeichnet in zehn am Mises Institute gehaltenen Vorlesungen eine libertäre Geistesgeschichte nach: vom „europäischen Wunder“ der mittelalterlichen Machtzersplitterung über die Entstehung des klassischen Liberalismus, John Stuart Mill und Klassentheorie bis zu Industrialisierung, Kapitalismus und seinen Gegnern, Planwirtschaft und dem Ersten Weltkrieg. Er schließt mit der Frage, wie der klassische Liberalismus dem modernen Wohlfahrts- und Kriegsstaat unterlag. Mit Einleitung und Anmerkungen von Ryan McMaken und einem Vorwort von T. Hunt Tooley.",
+        "coverImage": "/assets/Ralph Raico/Der Kampf um die Freiheit/cover.jpg",
+        "language": "DE",
+        "downloads": {
+            "pdf": "/assets/Ralph Raico/Der Kampf um die Freiheit/book.pdf",
+            "epub": "#",
+            "mp3": "#",
+            "youtube": "",
             "link": ""
         }
     }

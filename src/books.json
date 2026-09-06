@@ -1,5 +1,22 @@
 [
     {
+        "releaseDate": "1992",
+        "title": "Keynes, der Mensch",
+        "author": "Murray N. Rothbard",
+        "translator": "Andreas Tank",
+        "translatorLink": "https://x.com/RosarotePanzer",
+        "description": "Rothbard zeichnet ein schonungsloses Porträt von John Maynard Keynes – als Mensch, Politiker und Ökonom. Er argumentiert, dass die Allgemeine Theorie keineswegs revolutionär, sondern eine glänzend verpackte Neuauflage längst widerlegter merkantilistischer und inflationistischer Irrtümer war. Anhand von Keynes' Werdegang – vom Bloomsbury-Kreis über sein Selbstverständnis als amoralischer Immoralist bis zu seiner Rolle als machtbewusster Etatist – zeigt Rothbard, wie Arroganz, Pseudo-Originalität und geschicktes Marketing einer intellektuell dürftigen Lehre zum Durchbruch verhalfen und die Ökonomie nachhaltig prägten.",
+        "coverImage": "/assets/Murray N. Rothbard/Keynes, der Mensch/cover.jpg",
+        "language": "DE",
+        "downloads": {
+            "pdf": "/assets/Murray N. Rothbard/Keynes, der Mensch/book.pdf",
+            "epub": "#",
+            "mp3": "#",
+            "youtube": "",
+            "link": ""
+        }
+    },
+    {
         "releaseDate": "2020",
         "title": "Das libertäre Streben nach einer großen historischen Erzählung",
         "author": "Hans-Hermann Hoppe",

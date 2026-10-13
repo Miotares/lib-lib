@@ -234,7 +234,7 @@ function openBookFromHash() {
 document.addEventListener('click', (e) => {
   const link = e.target.closest('.download-options a.btn');
   if (!link || !window.umami) return;
-  const title = link.closest('.book-content, .modal-info-col')?.querySelector('h2')?.textContent.trim();
+  const title = link.closest('.book-card, .modal-info-col')?.querySelector('h2')?.textContent.trim();
   window.umami.track('download', { format: link.textContent.trim(), title });
 }, true);
 

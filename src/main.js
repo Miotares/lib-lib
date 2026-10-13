@@ -229,6 +229,15 @@ function openBookFromHash() {
   if (book) openBookModal(book);
 }
 
+// Umami: count download / buy clicks per work and format. A delegated listener
+// (rather than data-umami-event attributes) leaves same-tab downloads untouched.
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('.download-options a.btn');
+  if (!link || !window.umami) return;
+  const title = link.closest('.book-content, .modal-info-col')?.querySelector('h2')?.textContent.trim();
+  window.umami.track('download', { format: link.textContent.trim(), title });
+}, true);
+
 // Modal event listeners
 bookModal.querySelector('.book-modal-backdrop').addEventListener('click', closeBookModal);
 bookModal.querySelector('.book-modal-close').addEventListener('click', closeBookModal);
